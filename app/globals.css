@@ -1,0 +1,620 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-garamond: var(--font-garamond);
+  --font-mono: var(--font-mono);
+
+  /* Dark mode (default) */
+  --bg-primary: #000000;
+  --bg-secondary: #0A0A0A;
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --accent-green: #00FF00;
+  --accent-red: #FF0000;
+  --border-color: #FFFFFF;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.15);
+}
+
+html.light-mode {
+  --bg-primary: #F5F5F0;
+  --bg-secondary: #EAEAE5;
+  --text-primary: #0A0A0A;
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  --accent-green: #00CC00;
+  --accent-red: #CC0000;
+  --border-color: #0A0A0A;
+  --card-bg: rgba(0, 0, 0, 0.03);
+  --card-border: rgba(0, 0, 0, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* ============================================
+   CURSOR PERSONALIZADO (CSS PURO - Zero Lag)
+   ============================================ */
+
+* {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="8" stroke="white" stroke-width="1"/><line x1="12" y1="16" x2="12" y2="22" stroke="white" stroke-width="1"/><line x1="2" y1="12" x2="8" y2="12" stroke="white" stroke-width="1"/><line x1="16" y1="12" x2="22" y2="12" stroke="white" stroke-width="1"/><circle cx="12" cy="12" r="3" fill="none" stroke="white" stroke-width="1"/></svg>') 12 12, crosshair;
+}
+
+a, button, [role="button"], .clickable, input[type="submit"], input[type="button"], label[for] {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect x="8" y="8" width="8" height="8" fill="none" stroke="white" stroke-width="2"/><line x1="12" y1="4" x2="12" y2="6" stroke="white" stroke-width="1"/><line x1="12" y1="18" x2="12" y2="20" stroke="white" stroke-width="1"/><line x1="4" y1="12" x2="6" y2="12" stroke="white" stroke-width="1"/><line x1="18" y1="12" x2="20" y2="12" stroke="white" stroke-width="1"/></svg>') 12 12, pointer;
+}
+
+input[type="text"], input[type="email"], input[type="password"], textarea {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="20" stroke="white" stroke-width="1.5"/></svg>') 12 12, text;
+}
+
+/* Light mode cursors (dark stroke) */
+html.light-mode * {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="8" stroke="%230A0A0A" stroke-width="1"/><line x1="12" y1="16" x2="12" y2="22" stroke="%230A0A0A" stroke-width="1"/><line x1="2" y1="12" x2="8" y2="12" stroke="%230A0A0A" stroke-width="1"/><line x1="16" y1="12" x2="22" y2="12" stroke="%230A0A0A" stroke-width="1"/><circle cx="12" cy="12" r="3" fill="none" stroke="%230A0A0A" stroke-width="1"/></svg>') 12 12, crosshair;
+}
+
+html.light-mode a, html.light-mode button, html.light-mode [role="button"], html.light-mode .clickable, html.light-mode input[type="submit"], html.light-mode input[type="button"], html.light-mode label[for] {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect x="8" y="8" width="8" height="8" fill="none" stroke="%230A0A0A" stroke-width="2"/><line x1="12" y1="4" x2="12" y2="6" stroke="%230A0A0A" stroke-width="1"/><line x1="12" y1="18" x2="12" y2="20" stroke="%230A0A0A" stroke-width="1"/><line x1="4" y1="12" x2="6" y2="12" stroke="%230A0A0A" stroke-width="1"/><line x1="18" y1="12" x2="20" y2="12" stroke="%230A0A0A" stroke-width="1"/></svg>') 12 12, pointer;
+}
+
+html.light-mode input[type="text"], html.light-mode input[type="email"], html.light-mode input[type="password"], html.light-mode textarea {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="20" stroke="%230A0A0A" stroke-width="1.5"/></svg>') 12 12, text;
+}
+
+/* ============================================
+   TYPOGRAPHY HIERARCHY
+   ============================================ */
+
+h1, h2, h3 {
+  font-family: var(--font-garamond), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  letter-spacing: -0.05em;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+p, label, .body-text {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}
+
+h1 { font-size: clamp(2.5rem, 8vw, 6rem); }
+h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+
+.font-serif {
+  font-family: var(--font-garamond), ui-serif, Georgia, serif;
+}
+
+.font-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+/* ============================================
+   SELECTION & SCROLLBAR
+   ============================================ */
+
+::selection {
+  background-color: rgba(74, 222, 128, 0.3);
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-green, #4ade80);
+}
+
+/* ============================================
+   LIGHT MODE OVERRIDES
+   ============================================ */
+
+/* Content sections */
+html.light-mode section,
+html.light-mode footer {
+  background-color: var(--bg-primary) !important;
+}
+
+/* Navbar scroll state */
+html.light-mode .bg-black\/90 {
+  background-color: rgba(245, 245, 240, 0.9) !important;
+}
+
+/* Stats bar */
+html.light-mode .bg-black\/80 {
+  background-color: rgba(245, 245, 240, 0.8) !important;
+}
+
+/* Text colors */
+html.light-mode .text-white {
+  color: var(--text-primary) !important;
+}
+
+html.light-mode .text-white\/70 {
+  color: rgba(0, 0, 0, 0.75) !important;
+}
+
+html.light-mode .text-white\/60 {
+  color: rgba(0, 0, 0, 0.65) !important;
+}
+
+html.light-mode .text-white\/50 {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+html.light-mode .text-white\/40 {
+  color: rgba(0, 0, 0, 0.55) !important;
+}
+
+html.light-mode .text-white\/30 {
+  color: rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Border colors */
+html.light-mode .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+html.light-mode .border-white\/20 {
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+html.light-mode .border-white\/40 {
+  border-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+html.light-mode .border-white {
+  border-color: var(--border-color) !important;
+}
+
+/* Divide colors */
+html.light-mode .divide-white\/10 > * + * {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Background white line elements */
+html.light-mode .bg-white\/40 {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+html.light-mode .bg-white\/20 {
+  background-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+html.light-mode .bg-white {
+  background-color: var(--text-primary) !important;
+}
+
+/* Hover states - CTA buttons: text must contrast against filled bg */
+html.light-mode .group:hover .group-hover\:text-black {
+  color: var(--bg-primary) !important; /* crema on dark fill */
+}
+
+/* Selection */
+html.light-mode ::selection {
+  background-color: rgba(0, 180, 0, 0.25);
+  color: #000000;
+}
+
+/* Scrollbar light mode */
+html.light-mode ::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+html.light-mode ::-webkit-scrollbar-thumb {
+  background: var(--accent-green);
+}
+
+/* Mobile menu */
+html.light-mode .bg-black.md\:hidden {
+  background-color: var(--bg-primary) !important;
+}
+
+/* Navbar logo text */
+html.light-mode .navbar-logo span {
+  color: var(--text-primary);
+}
+
+/* Navbar logo glow in light mode */
+html.light-mode .navbar-logo:hover img {
+  filter: drop-shadow(0 0 8px rgba(0, 180, 0, 0.6));
+}
+
+/* Video background in light mode — keep visible with cream overlay */
+html.light-mode .fixed.-z-10 {
+  opacity: 0.15;
+  background-color: var(--bg-primary);
+}
+
+html.light-mode .fixed.-z-10::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(245, 245, 240, 0.6);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Cards - inputs in light mode */
+html.light-mode .brutal-input {
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+html.light-mode .brutal-input::placeholder {
+  color: rgba(0, 0, 0, 0.25);
+}
+
+html.light-mode .brutal-input:focus {
+  border-color: var(--accent-green);
+  background-color: rgba(0, 180, 0, 0.03);
+}
+
+/* Card component override */
+html.light-mode .bg-black.border.border-white {
+  background-color: var(--bg-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Navbar toggles (theme + language) */
+.navbar-toggle {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  padding: 4px 8px;
+  transition: none;
+}
+
+.navbar-toggle:hover {
+  background: var(--accent-green);
+  color: #000000;
+  border-color: var(--accent-green);
+}
+
+html.light-mode .navbar-toggle {
+  border: 1.5px solid rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* ============================================
+   BRUTALIST COMPONENTS (ZERO TRANSITIONS)
+   ============================================ */
+
+.brutal-card {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  transition: none;
+}
+
+.brutal-card:hover {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+.brutal-button {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: none;
+}
+
+.brutal-button:hover {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+.brutal-input {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  width: 100%;
+}
+
+.brutal-input:focus {
+  outline: none;
+  border-color: #4ade80;
+  background-color: rgba(74, 222, 128, 0.02);
+}
+
+.brutal-input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* ============================================
+   NAV LINK HOVER STATES
+   ============================================ */
+
+.nav-link {
+  position: relative;
+  transition: none;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #ffffff;
+  transition: none;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes glitch {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: translate(-2px, 2px);
+  }
+  20% {
+    clip-path: inset(92% 0 1% 0);
+    transform: translate(2px, -2px);
+  }
+  40% {
+    clip-path: inset(43% 0 1% 0);
+    transform: translate(-2px, 2px);
+  }
+  60% {
+    clip-path: inset(25% 0 58% 0);
+    transform: translate(2px, -2px);
+  }
+  80% {
+    clip-path: inset(54% 0 7% 0);
+    transform: translate(-2px, 2px);
+  }
+  100% {
+    clip-path: inset(58% 0 43% 0);
+    transform: translate(2px, -2px);
+  }
+}
+
+.glitch-text {
+  position: relative;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.terminal-cursor {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.22; }
+  75% { opacity: 0.28; }
+}
+
+/* ============================================
+   BACKGROUND EFFECTS
+   ============================================ */
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(74, 222, 128, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 222, 128, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+}
+
+/* ============================================
+   PAGE TRANSITION
+   ============================================ */
+
+.page-transition {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   COLOSSUS-STYLE PATTERNS
+   ============================================ */
+
+/* Dithered dot pattern overlay (Colossus signature) */
+.dithered-pattern {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+/* Currency/security diagonal lines */
+.currency-lines {
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255,255,255,0.02) 10px,
+      rgba(255,255,255,0.02) 11px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 10px,
+      rgba(255,255,255,0.02) 10px,
+      rgba(255,255,255,0.02) 11px
+    );
+}
+
+/* Engraved text effect (Colossus style) */
+.engraved-text {
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.1),
+    0 -1px 0 rgba(0,0,0,0.8);
+}
+
+/* Monochrome border with depth (Colossus style) */
+.monochrome-border {
+  border: 2px solid rgba(255,255,255,0.8);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.1),
+    0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* ============================================
+   NAVBAR LOGO GLOW
+   ============================================ */
+
+.navbar-logo img {
+  filter: drop-shadow(0 0 0px rgba(0, 255, 0, 0));
+  transition: filter 0.2s ease;
+}
+
+.navbar-logo:hover img {
+  filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.5));
+}
+
+/* ============================================
+   HERO MANTIS VISUAL
+   ============================================ */
+
+@keyframes digitalPulse {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.35; }
+}
+
+.hero-mantis-bg {
+  animation: digitalPulse 4s ease-in-out infinite;
+}
+
+/* ============================================
+   FLIP CARD 3D
+   ============================================ */
+
+.flip-card {
+  perspective: 1000px;
+  min-height: 280px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.08);
+}
+
+.flip-card:hover .flip-card-front {
+  box-shadow: 0 0 40px rgba(0, 255, 0, 0.15);
+}
+
+.flip-card-back {
+  background: var(--bg-primary);
+  border: 1px solid var(--accent-green, rgba(0, 255, 0, 0.3));
+  padding: 1.5rem;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+  box-shadow: 0 0 40px rgba(0, 255, 0, 0.15);
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+
+.border-brutal {
+  border: 1px solid #ffffff;
+}
+
+.hover-invert {
+  transition: none;
+}
+
+.hover-invert:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+img {
+  font-family: inherit;
+}
