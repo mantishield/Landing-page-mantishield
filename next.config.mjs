@@ -2,8 +2,6 @@ import withBundleAnalyzer from "@next/bundle-analyzer";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Removed output: "export" to support API routes
-  distDir: "dist",
   images: {
     unoptimized: true,
   },

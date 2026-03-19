@@ -1,0 +1,13 @@
+# Legacy large assets (not used in production)
+public/assets/city_noise.mp4
+public/assets/MantisLogo.png
+public/assets/horizontal-logo-*.jpeg
+public/assets/minimalist-geometric-*.jpeg
+
+# Build output
+dist/
+.next/
+
+# Dev files
+CLAUDE.md
+PERFORMANCE.md
