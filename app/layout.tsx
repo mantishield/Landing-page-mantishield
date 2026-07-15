@@ -3,35 +3,7 @@ import "./globals.css";
 import { NoiseOverlay } from "@/components/NoiseOverlay";
 import { Navbar } from "@/components/layout/Navbar";
 import { Providers } from "@/components/Providers";
-import dynamic from "next/dynamic";
-
-const PixelatedVideoBackground = dynamic(
-  () =>
-    import("@/components/visuals/PixelatedVideoBackground").then((mod) => ({
-      default: mod.PixelatedVideoBackground,
-    })),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="fixed inset-0 -z-10 bg-black">
-        {/* Static video fallback while JS loads */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{
-            opacity: 0.15,
-            filter: "grayscale(1) contrast(2.5) brightness(0.4)",
-          }}
-        >
-          <source src="/assets/city_noise_web.mp4" type="video/mp4" />
-        </video>
-      </div>
-    ),
-  }
-);
+import { VideoBackgroundClient } from "@/components/visuals/VideoBackgroundClient";
 
 export const metadata: Metadata = {
   title: "MantisShield — Security Research Firm",
@@ -65,7 +37,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-black text-white antialiased font-sans">
         <Providers>
-          <PixelatedVideoBackground />
+          <VideoBackgroundClient />
           <NoiseOverlay />
           <Navbar />
           <main className="page-transition">{children}</main>

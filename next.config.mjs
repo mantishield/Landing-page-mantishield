@@ -6,7 +6,6 @@ const nextConfig = {
     unoptimized: true,
   },
 
-  swcMinify: true,
   compress: true,
   poweredByHeader: false,
 
