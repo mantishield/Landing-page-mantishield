@@ -22,7 +22,7 @@ export function WhySection() {
         </div>
         <div className="grid md:grid-cols-2 gap-16 items-start">
           <div>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-[-0.05em] mb-8">
+            <h2 className="font-sans font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight mb-8">
               {t("why.heading1")}
               <br />
               {t("why.heading2")}
@@ -41,7 +41,7 @@ export function WhySection() {
                   <div className="flex items-start justify-between h-full">
                     <div className="flex items-center gap-3">
                       <span className="text-2xl">{item.icon}</span>
-                      <h3 className="font-serif text-xl tracking-[-0.02em]">
+                      <h3 className="font-sans font-bold text-xl tracking-tight">
                         {t(item.titleKey)}
                       </h3>
                     </div>
@@ -54,7 +54,7 @@ export function WhySection() {
                   <div className="flex flex-col justify-center h-full">
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-sm">{item.icon}</span>
-                      <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-green-400/80">
+                      <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-accent/80">
                         {t(item.titleKey)}
                       </span>
                     </div>

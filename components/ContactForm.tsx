@@ -136,7 +136,7 @@ export function ContactForm() {
 
       {/* Status Messages */}
       {status === "success" && (
-        <div className="border border-green-400 bg-green-400/5 p-4 font-mono text-sm text-green-400">
+        <div className="border border-accent bg-accent/5 p-4 font-mono text-sm text-accent">
           <span className="mr-2">&#10003;</span>
           {t("form.success")}
         </div>

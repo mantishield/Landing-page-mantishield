@@ -27,7 +27,7 @@ export function ServicesPageContent() {
               {t("servicesPage.label")}
             </span>
           </div>
-          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl tracking-[-0.05em] max-w-4xl mb-6">
+          <h1 className="text-gradient font-sans font-bold text-4xl md:text-6xl lg:text-7xl tracking-tight max-w-4xl mb-6">
             {t("servicesPage.heading1")}
             <br />
             {t("servicesPage.heading2")}
@@ -44,7 +44,7 @@ export function ServicesPageContent() {
               <div className="text-4xl mb-6 opacity-60 group-hover:opacity-100">
                 {service.icon}
               </div>
-              <h3 className="font-serif text-xl md:text-2xl mb-3 tracking-[-0.03em]">
+              <h3 className="font-sans font-bold text-xl md:text-2xl mb-3 tracking-tight">
                 {t(service.titleKey)}
               </h3>
               <p className="font-mono text-xs tracking-wide opacity-60 group-hover:opacity-100 leading-relaxed">
@@ -58,7 +58,7 @@ export function ServicesPageContent() {
         <div className="mt-20 pt-12 border-t border-white/10">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
-              <h2 className="font-serif text-3xl md:text-4xl tracking-[-0.05em] mb-2">
+              <h2 className="font-sans font-bold text-3xl md:text-4xl tracking-tight mb-2">
                 {t("servicesPage.readyHeading")}
               </h2>
               <p className="font-mono text-sm text-white/50 tracking-wide">

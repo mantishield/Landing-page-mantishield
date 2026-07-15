@@ -34,7 +34,7 @@ export function ContactContent() {
               {t("contact.label")}
             </span>
           </div>
-          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl tracking-[-0.05em] mb-6">
+          <h1 className="text-gradient font-sans font-bold text-4xl md:text-6xl lg:text-7xl tracking-tight mb-6">
             {t("contact.heading")}
           </h1>
           <p className="font-mono text-sm text-white/50 max-w-xl tracking-wide">

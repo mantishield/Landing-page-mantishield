@@ -4,20 +4,22 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import { useTheme } from "@/lib/ThemeContext";
 import { useLang } from "@/lib/LanguageContext";
 
 const navLinkKeys = [
-  { key: "nav.services", href: "/services" },
-  { key: "nav.protocol", href: "/protocol" },
-  { key: "nav.contact", href: "/contact" },
+  { key: "nav.services", href: "/services", external: false },
+  {
+    key: "nav.verdict",
+    href: "https://verdict.mantishield.xyz/",
+    external: true,
+  },
+  { key: "nav.contact", href: "/contact", external: false },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
-  const { theme, toggleTheme } = useTheme();
   const { lang, toggleLang, t } = useLang();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -37,6 +39,50 @@ export function Navbar() {
 
   const isActive = (href: string) => pathname === href;
 
+  const renderLink = (link: (typeof navLinkKeys)[number]) => {
+    const className = `font-mono text-[11px] uppercase tracking-[0.25em] relative group inline-flex items-center gap-1 ${
+      isActive(link.href) ? "text-white" : "text-white/70 hover:text-white"
+    }`;
+    const underline = (
+      <span
+        className={`absolute -bottom-1 left-0 h-[1px] bg-accent ${
+          isActive(link.href) ? "w-full" : "w-0 group-hover:w-full"
+        }`}
+        style={{ transition: "none" }}
+      />
+    );
+
+    if (link.external) {
+      return (
+        <a
+          key={link.key}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={className}
+          style={{ transition: "none" }}
+        >
+          {t(link.key)}
+          <ArrowUpRight size={11} className="text-accent" />
+          {underline}
+        </a>
+      );
+    }
+
+    return (
+      <Link
+        key={link.key}
+        href={link.href}
+        prefetch={false}
+        className={className}
+        style={{ transition: "none" }}
+      >
+        {t(link.key)}
+        {underline}
+      </Link>
+    );
+  };
+
   return (
     <>
       <motion.header
@@ -54,27 +100,7 @@ export function Navbar() {
 
             {/* Left Nav Links */}
             <nav className="hidden md:flex items-center gap-12 flex-1 justify-end pr-16">
-              {navLinkKeys.slice(0, 1).map((link) => (
-                <Link
-                  key={link.key}
-                  href={link.href}
-                  prefetch={false}
-                  className={`font-mono text-[11px] uppercase tracking-[0.25em] relative group ${
-                    isActive(link.href)
-                      ? "text-white"
-                      : "text-white/70 hover:text-white"
-                  }`}
-                  style={{ transition: "none" }}
-                >
-                  {t(link.key)}
-                  <span
-                    className={`absolute -bottom-1 left-0 h-[1px] bg-white ${
-                      isActive(link.href) ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
-                    style={{ transition: "none" }}
-                  />
-                </Link>
-              ))}
+              {navLinkKeys.slice(0, 1).map(renderLink)}
             </nav>
 
             {/* Center Logo — Navar.jpeg with mix-blend-mode to remove black bg */}
@@ -90,7 +116,8 @@ export function Navbar() {
                   className="object-cover object-left"
                   style={{
                     mixBlendMode: "screen",
-                    filter: "drop-shadow(0 0 4px rgba(0, 255, 0, 0.3))",
+                    filter:
+                      "hue-rotate(140deg) drop-shadow(0 0 4px rgba(56, 189, 248, 0.3))",
                   }}
                   priority
                   sizes="44px"
@@ -99,36 +126,16 @@ export function Navbar() {
               <span className="font-mono text-sm md:text-base tracking-[0.25em] uppercase text-white hidden sm:block">
                 MANTIS
               </span>
-              {/* Green accent line under logo (matches Navar.jpeg design) */}
+              {/* Accent line under logo */}
               <div
-                className="absolute -bottom-2 left-1/2 -translate-x-1/2 h-[1px] w-0 group-hover:w-full bg-green-400"
+                className="absolute -bottom-2 left-1/2 -translate-x-1/2 h-[1px] w-0 group-hover:w-full bg-accent"
                 style={{ transition: "width 0.2s ease" }}
               />
             </Link>
 
             {/* Right Nav Links */}
             <nav className="hidden md:flex items-center gap-12 flex-1 justify-start pl-16">
-              {navLinkKeys.slice(1).map((link) => (
-                <Link
-                  key={link.key}
-                  href={link.href}
-                  prefetch={false}
-                  className={`font-mono text-[11px] uppercase tracking-[0.25em] relative group ${
-                    isActive(link.href)
-                      ? "text-white"
-                      : "text-white/70 hover:text-white"
-                  }`}
-                  style={{ transition: "none" }}
-                >
-                  {t(link.key)}
-                  <span
-                    className={`absolute -bottom-1 left-0 h-[1px] bg-white ${
-                      isActive(link.href) ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
-                    style={{ transition: "none" }}
-                  />
-                </Link>
-              ))}
+              {navLinkKeys.slice(1).map(renderLink)}
             </nav>
 
             {/* Language Toggle */}
@@ -138,15 +145,6 @@ export function Navbar() {
               aria-label="Toggle language"
             >
               {lang === "en" ? "[ES]" : "[EN]"}
-            </button>
-
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className="navbar-toggle hidden md:block ml-2"
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? "[☀]" : "[☾]"}
             </button>
 
             {/* Mobile Menu Button */}
@@ -187,7 +185,8 @@ export function Navbar() {
                     className="object-cover object-left"
                     style={{
                       mixBlendMode: "screen",
-                      filter: "drop-shadow(0 0 4px rgba(0, 255, 0, 0.3))",
+                      filter:
+                        "hue-rotate(140deg) drop-shadow(0 0 4px rgba(56, 189, 248, 0.3))",
                     }}
                     priority
                     sizes="80px"
@@ -206,19 +205,31 @@ export function Navbar() {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ delay: index * 0.1, duration: 0.3 }}
                 >
-                  <Link
-                    href={link.href}
-                    prefetch={false}
-                    className={`font-mono text-lg uppercase tracking-[0.3em] ${
-                      isActive(link.href) ? "text-white" : "text-white/70"
-                    }`}
-                  >
-                    {t(link.key)}
-                  </Link>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-mono text-lg uppercase tracking-[0.3em] text-white/70 inline-flex items-center gap-2"
+                    >
+                      {t(link.key)}
+                      <ArrowUpRight size={16} className="text-accent" />
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      prefetch={false}
+                      className={`font-mono text-lg uppercase tracking-[0.3em] ${
+                        isActive(link.href) ? "text-white" : "text-white/70"
+                      }`}
+                    >
+                      {t(link.key)}
+                    </Link>
+                  )}
                 </motion.div>
               ))}
 
-              {/* Mobile Language + Theme Toggle */}
+              {/* Mobile Language Toggle */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -228,9 +239,6 @@ export function Navbar() {
               >
                 <button onClick={toggleLang} className="navbar-toggle">
                   {lang === "en" ? "[ES]" : "[EN]"}
-                </button>
-                <button onClick={toggleTheme} className="navbar-toggle">
-                  {theme === "dark" ? "[☀ LIGHT]" : "[☾ DARK]"}
                 </button>
               </motion.div>
             </div>

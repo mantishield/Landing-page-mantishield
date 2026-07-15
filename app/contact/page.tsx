@@ -3,12 +3,12 @@ import { Footer } from "@/components/Footer";
 import { ContactContent } from "@/components/sections/ContactContent";
 
 export const metadata: Metadata = {
-  title: "MantisShield - Contact",
+  title: "MantisShield — Contact",
   description:
-    "Get in touch with MantisShield. Secure your DeFi protocol with our AI-driven threat intelligence and automated response systems.",
+    "Suspect a fraud? Describe your case — a suspicious email, a possible scam, media you doubt. Initial assessment within 24-48 hours.",
   openGraph: {
-    title: "MantisShield - Contact Us",
-    description: "Secure your protocol - Get in touch",
+    title: "MantisShield — Contact",
+    description: "Send us your case. Initial assessment within 24-48 hours.",
     images: ["/og-image.png"],
   },
 };

@@ -86,9 +86,9 @@ export function PixelatedVideoBackground() {
           const threshold = bayerFlat[bIdx] * 255
           const isWhite = gray > threshold
 
-          const rOut = isWhite ? 200 : 0
-          const gOut = isWhite ? 255 : 0
-          const bOut = isWhite ? 210 : 0
+          const rOut = isWhite ? 120 : 0
+          const gOut = isWhite ? 200 : 0
+          const bOut = isWhite ? 255 : 0
 
           for (let by = 0; by < maxBy; by++) {
             for (let bx = 0; bx < maxBx; bx++) {
@@ -195,7 +195,7 @@ export function PixelatedVideoBackground() {
       <div
         className="absolute left-0 right-0 pointer-events-none animate-scanline"
         style={{
-          background: 'linear-gradient(transparent, rgba(74, 222, 128, 0.04) 50%, transparent)',
+          background: 'linear-gradient(transparent, rgba(56, 189, 248, 0.04) 50%, transparent)',
           height: '120px',
         }}
       />

@@ -3,16 +3,18 @@ import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
 import { WhySection } from "@/components/sections/WhySection";
 import { StatsBar } from "@/components/sections/StatsBar";
+import { VerdictSection } from "@/components/sections/VerdictSection";
 import { CTASection } from "@/components/sections/CTASection";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "MantisShield - Defending the Decentralized Fabric",
+  title: "MantisShield — Security Research Firm",
   description:
-    "AI-driven threat intelligence & automated response for DeFi protocols. Advanced Web3 security powered by autonomous AI agents.",
+    "We research digital fraud. Analysis of scams, social engineering and deepfakes with in-house, AI-assisted tools and continuous monitoring.",
   openGraph: {
-    title: "MantisShield Security",
-    description: "Advanced Web3 security powered by AI agents",
+    title: "MantisShield — Security Research Firm",
+    description:
+      "Fraud, scam, social engineering and deepfake analysis with AI-assisted tools.",
     images: ["/og-image.png"],
   },
 };
@@ -31,6 +33,9 @@ export default function HomePage() {
 
       {/* Why MantisShield — with flip cards */}
       <WhySection />
+
+      {/* Verdict product */}
+      <VerdictSection />
 
       {/* CTA Section */}
       <CTASection />

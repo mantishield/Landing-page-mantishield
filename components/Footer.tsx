@@ -25,7 +25,7 @@ export function Footer() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl tracking-[0.05em] mb-6">
+            <h2 className="text-gradient font-sans font-bold text-3xl md:text-5xl lg:text-6xl tracking-tight mb-6">
               {t("footer.heading1")}
               <br />
               {t("footer.heading2")}
@@ -53,15 +53,35 @@ export function Footer() {
         <div className="w-full h-[1px] bg-white/10 mb-12" />
 
         {/* Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="font-serif text-2xl tracking-[0.3em] uppercase mb-4">
+            <div className="font-sans font-bold text-2xl tracking-[0.3em] uppercase mb-4">
               MANTISHIELD
             </div>
             <p className="font-mono text-[10px] leading-relaxed tracking-[0.05em] text-white/40 max-w-sm">
               {t("footer.brand.desc")}
             </p>
+          </div>
+
+          {/* Product */}
+          <div>
+            <h4 className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/30 mb-4">
+              {t("footer.product")}
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="https://verdict.mantishield.xyz/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.1em] text-accent/80 hover:text-accent transition-colors duration-0"
+                >
+                  Verdict
+                  <ArrowUpRight size={10} />
+                </a>
+              </li>
+            </ul>
           </div>
 
           {/* Links */}

@@ -3,31 +3,20 @@
 @tailwind utilities;
 
 :root {
-  --font-garamond: var(--font-garamond);
-  --font-mono: var(--font-mono);
-
-  /* Dark mode (default) */
-  --bg-primary: #000000;
-  --bg-secondary: #0A0A0A;
-  --text-primary: #FFFFFF;
-  --text-secondary: rgba(255, 255, 255, 0.6);
-  --accent-green: #00FF00;
-  --accent-red: #FF0000;
-  --border-color: #FFFFFF;
-  --card-bg: rgba(255, 255, 255, 0.03);
-  --card-border: rgba(255, 255, 255, 0.15);
-}
-
-html.light-mode {
-  --bg-primary: #F5F5F0;
-  --bg-secondary: #EAEAE5;
-  --text-primary: #0A0A0A;
-  --text-secondary: rgba(0, 0, 0, 0.6);
-  --accent-green: #00CC00;
-  --accent-red: #CC0000;
-  --border-color: #0A0A0A;
-  --card-bg: rgba(0, 0, 0, 0.03);
-  --card-border: rgba(0, 0, 0, 0.15);
+  /* Verdict design system — Apple-dark, sky blue accent */
+  --bg-primary: #06070f;
+  --bg-secondary: #0a0d18;
+  --text-primary: #edf2f8;
+  --text-secondary: rgba(226, 236, 245, 0.58);
+  --text-faint: rgba(226, 236, 245, 0.34);
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.34);
+  --accent-red: #f87171;
+  --border-color: #edf2f8;
+  --panel: rgba(226, 236, 245, 0.045);
+  --hairline: rgba(226, 236, 245, 0.14);
+  --card-bg: rgba(226, 236, 245, 0.045);
+  --card-border: rgba(226, 236, 245, 0.14);
 }
 
 * {
@@ -40,8 +29,14 @@ html {
 
 body {
   background-color: var(--bg-primary);
+  background-image: radial-gradient(
+    circle at 50% 42%,
+    rgba(8, 12, 20, 0.92),
+    rgba(4, 6, 12, 0.96)
+  );
   color: var(--text-primary);
-  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "SF Pro Display", "Inter", system-ui, sans-serif;
 }
 
 /* ============================================
@@ -53,24 +48,11 @@ body {
 }
 
 a, button, [role="button"], .clickable, input[type="submit"], input[type="button"], label[for] {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect x="8" y="8" width="8" height="8" fill="none" stroke="white" stroke-width="2"/><line x1="12" y1="4" x2="12" y2="6" stroke="white" stroke-width="1"/><line x1="12" y1="18" x2="12" y2="20" stroke="white" stroke-width="1"/><line x1="4" y1="12" x2="6" y2="12" stroke="white" stroke-width="1"/><line x1="18" y1="12" x2="20" y2="12" stroke="white" stroke-width="1"/></svg>') 12 12, pointer;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect x="8" y="8" width="8" height="8" fill="none" stroke="%2338bdf8" stroke-width="2"/><line x1="12" y1="4" x2="12" y2="6" stroke="%2338bdf8" stroke-width="1"/><line x1="12" y1="18" x2="12" y2="20" stroke="%2338bdf8" stroke-width="1"/><line x1="4" y1="12" x2="6" y2="12" stroke="%2338bdf8" stroke-width="1"/><line x1="18" y1="12" x2="20" y2="12" stroke="%2338bdf8" stroke-width="1"/></svg>') 12 12, pointer;
 }
 
 input[type="text"], input[type="email"], input[type="password"], textarea {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="20" stroke="white" stroke-width="1.5"/></svg>') 12 12, text;
-}
-
-/* Light mode cursors (dark stroke) */
-html.light-mode * {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="8" stroke="%230A0A0A" stroke-width="1"/><line x1="12" y1="16" x2="12" y2="22" stroke="%230A0A0A" stroke-width="1"/><line x1="2" y1="12" x2="8" y2="12" stroke="%230A0A0A" stroke-width="1"/><line x1="16" y1="12" x2="22" y2="12" stroke="%230A0A0A" stroke-width="1"/><circle cx="12" cy="12" r="3" fill="none" stroke="%230A0A0A" stroke-width="1"/></svg>') 12 12, crosshair;
-}
-
-html.light-mode a, html.light-mode button, html.light-mode [role="button"], html.light-mode .clickable, html.light-mode input[type="submit"], html.light-mode input[type="button"], html.light-mode label[for] {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect x="8" y="8" width="8" height="8" fill="none" stroke="%230A0A0A" stroke-width="2"/><line x1="12" y1="4" x2="12" y2="6" stroke="%230A0A0A" stroke-width="1"/><line x1="12" y1="18" x2="12" y2="20" stroke="%230A0A0A" stroke-width="1"/><line x1="4" y1="12" x2="6" y2="12" stroke="%230A0A0A" stroke-width="1"/><line x1="18" y1="12" x2="20" y2="12" stroke="%230A0A0A" stroke-width="1"/></svg>') 12 12, pointer;
-}
-
-html.light-mode input[type="text"], html.light-mode input[type="email"], html.light-mode input[type="password"], html.light-mode textarea {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="20" stroke="%230A0A0A" stroke-width="1.5"/></svg>') 12 12, text;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="20" stroke="%2338bdf8" stroke-width="1.5"/></svg>') 12 12, text;
 }
 
 /* ============================================
@@ -78,14 +60,15 @@ html.light-mode input[type="text"], html.light-mode input[type="email"], html.li
    ============================================ */
 
 h1, h2, h3 {
-  font-family: var(--font-garamond), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  letter-spacing: -0.05em;
-  font-weight: 400;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "SF Pro Text", "Inter", system-ui, sans-serif;
+  letter-spacing: -0.02em;
+  font-weight: 700;
   line-height: 1.1;
 }
 
 p, label, .body-text {
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
   letter-spacing: 0.05em;
   font-weight: 400;
 }
@@ -94,12 +77,47 @@ h1 { font-size: clamp(2.5rem, 8vw, 6rem); }
 h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
 h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 
-.font-serif {
-  font-family: var(--font-garamond), ui-serif, Georgia, serif;
+.font-sans {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "SF Pro Display", "Inter", system-ui, sans-serif;
 }
 
 .font-mono {
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+/* Verdict-style headline gradient (white → soft blue) */
+.text-gradient {
+  background: linear-gradient(180deg, #ffffff 28%, #a9cdf2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Verdict-style pill badge with luminous dot */
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.06);
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(226, 236, 245, 0.75);
+}
+
+.badge-pill::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow), 0 0 16px var(--accent-glow);
 }
 
 /* ============================================
@@ -107,7 +125,7 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
    ============================================ */
 
 ::selection {
-  background-color: rgba(74, 222, 128, 0.3);
+  background-color: rgba(56, 189, 248, 0.3);
   color: #ffffff;
 }
 
@@ -120,183 +138,26 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent-green, #4ade80);
+  background: var(--accent);
 }
 
-/* ============================================
-   LIGHT MODE OVERRIDES
-   ============================================ */
-
-/* Content sections */
-html.light-mode section,
-html.light-mode footer {
-  background-color: var(--bg-primary) !important;
-}
-
-/* Navbar scroll state */
-html.light-mode .bg-black\/90 {
-  background-color: rgba(245, 245, 240, 0.9) !important;
-}
-
-/* Stats bar */
-html.light-mode .bg-black\/80 {
-  background-color: rgba(245, 245, 240, 0.8) !important;
-}
-
-/* Text colors */
-html.light-mode .text-white {
-  color: var(--text-primary) !important;
-}
-
-html.light-mode .text-white\/70 {
-  color: rgba(0, 0, 0, 0.75) !important;
-}
-
-html.light-mode .text-white\/60 {
-  color: rgba(0, 0, 0, 0.65) !important;
-}
-
-html.light-mode .text-white\/50 {
-  color: rgba(0, 0, 0, 0.6) !important;
-}
-
-html.light-mode .text-white\/40 {
-  color: rgba(0, 0, 0, 0.55) !important;
-}
-
-html.light-mode .text-white\/30 {
-  color: rgba(0, 0, 0, 0.45) !important;
-}
-
-/* Border colors */
-html.light-mode .border-white\/10 {
-  border-color: rgba(0, 0, 0, 0.1) !important;
-}
-
-html.light-mode .border-white\/20 {
-  border-color: rgba(0, 0, 0, 0.15) !important;
-}
-
-html.light-mode .border-white\/40 {
-  border-color: rgba(0, 0, 0, 0.3) !important;
-}
-
-html.light-mode .border-white {
-  border-color: var(--border-color) !important;
-}
-
-/* Divide colors */
-html.light-mode .divide-white\/10 > * + * {
-  border-color: rgba(0, 0, 0, 0.1) !important;
-}
-
-/* Background white line elements */
-html.light-mode .bg-white\/40 {
-  background-color: rgba(0, 0, 0, 0.3) !important;
-}
-
-html.light-mode .bg-white\/20 {
-  background-color: rgba(0, 0, 0, 0.15) !important;
-}
-
-html.light-mode .bg-white {
-  background-color: var(--text-primary) !important;
-}
-
-/* Hover states - CTA buttons: text must contrast against filled bg */
-html.light-mode .group:hover .group-hover\:text-black {
-  color: var(--bg-primary) !important; /* crema on dark fill */
-}
-
-/* Selection */
-html.light-mode ::selection {
-  background-color: rgba(0, 180, 0, 0.25);
-  color: #000000;
-}
-
-/* Scrollbar light mode */
-html.light-mode ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-}
-
-html.light-mode ::-webkit-scrollbar-thumb {
-  background: var(--accent-green);
-}
-
-/* Mobile menu */
-html.light-mode .bg-black.md\:hidden {
-  background-color: var(--bg-primary) !important;
-}
-
-/* Navbar logo text */
-html.light-mode .navbar-logo span {
-  color: var(--text-primary);
-}
-
-/* Navbar logo glow in light mode */
-html.light-mode .navbar-logo:hover img {
-  filter: drop-shadow(0 0 8px rgba(0, 180, 0, 0.6));
-}
-
-/* Video background in light mode — keep visible with cream overlay */
-html.light-mode .fixed.-z-10 {
-  opacity: 0.15;
-  background-color: var(--bg-primary);
-}
-
-html.light-mode .fixed.-z-10::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(245, 245, 240, 0.6);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Cards - inputs in light mode */
-html.light-mode .brutal-input {
-  color: var(--text-primary);
-  border-color: var(--border-color);
-}
-
-html.light-mode .brutal-input::placeholder {
-  color: rgba(0, 0, 0, 0.25);
-}
-
-html.light-mode .brutal-input:focus {
-  border-color: var(--accent-green);
-  background-color: rgba(0, 180, 0, 0.03);
-}
-
-/* Card component override */
-html.light-mode .bg-black.border.border-white {
-  background-color: var(--bg-primary) !important;
-  border-color: var(--border-color) !important;
-}
-
-/* Navbar toggles (theme + language) */
+/* Navbar toggles (language) */
 .navbar-toggle {
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
   font-size: 0.7rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--text-primary);
   background: transparent;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--hairline);
   padding: 4px 8px;
   transition: none;
 }
 
 .navbar-toggle:hover {
-  background: var(--accent-green);
-  color: #000000;
-  border-color: var(--accent-green);
-}
-
-html.light-mode .navbar-toggle {
-  border: 1.5px solid rgba(0, 0, 0, 0.5);
-  color: rgba(0, 0, 0, 0.8);
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--accent);
+  color: #06070f;
+  border-color: var(--accent);
 }
 
 /* ============================================
@@ -306,7 +167,7 @@ html.light-mode .navbar-toggle {
 .brutal-card {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--hairline);
   padding: 1.5rem;
   transition: none;
 }
@@ -319,9 +180,9 @@ html.light-mode .navbar-toggle {
 .brutal-button {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--hairline);
   padding: 0.75rem 1.5rem;
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -329,16 +190,17 @@ html.light-mode .navbar-toggle {
 }
 
 .brutal-button:hover {
-  background-color: var(--text-primary);
-  color: var(--bg-primary);
+  background-color: var(--accent);
+  color: #06070f;
+  border-color: var(--accent);
 }
 
 .brutal-input {
   background-color: transparent;
-  color: #ffffff;
-  border: 1px solid #ffffff;
+  color: var(--text-primary);
+  border: 1px solid var(--hairline);
   padding: 0.75rem 1rem;
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
   font-size: 0.875rem;
   letter-spacing: 0.05em;
   width: 100%;
@@ -346,12 +208,12 @@ html.light-mode .navbar-toggle {
 
 .brutal-input:focus {
   outline: none;
-  border-color: #4ade80;
-  background-color: rgba(74, 222, 128, 0.02);
+  border-color: var(--accent);
+  background-color: rgba(56, 189, 248, 0.04);
 }
 
 .brutal-input::placeholder {
-  color: rgba(255, 255, 255, 0.25);
+  color: var(--text-faint);
 }
 
 /* ============================================
@@ -370,7 +232,7 @@ html.light-mode .navbar-toggle {
   left: 0;
   width: 0;
   height: 1px;
-  background-color: #ffffff;
+  background-color: var(--accent);
   transition: none;
 }
 
@@ -439,8 +301,8 @@ html.light-mode .navbar-toggle {
 
 .grid-bg {
   background-image:
-    linear-gradient(rgba(74, 222, 128, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(74, 222, 128, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
@@ -472,46 +334,54 @@ html.light-mode .navbar-toggle {
 }
 
 /* ============================================
-   COLOSSUS-STYLE PATTERNS
+   PANEL & TEXTURE PATTERNS
    ============================================ */
 
-/* Dithered dot pattern overlay (Colossus signature) */
+/* Verdict-style blurred panel */
+.glass-panel {
+  background: var(--panel);
+  border: 1px solid var(--hairline);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Dithered dot pattern overlay */
 .dithered-pattern {
-  background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(237,242,248,0.08) 1px, transparent 1px);
   background-size: 4px 4px;
 }
 
-/* Currency/security diagonal lines */
+/* Security diagonal lines */
 .currency-lines {
   background-image:
     repeating-linear-gradient(
       45deg,
       transparent,
       transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 11px
+      rgba(237,242,248,0.02) 10px,
+      rgba(237,242,248,0.02) 11px
     ),
     repeating-linear-gradient(
       -45deg,
       transparent,
       transparent 10px,
-      rgba(255,255,255,0.02) 10px,
-      rgba(255,255,255,0.02) 11px
+      rgba(237,242,248,0.02) 10px,
+      rgba(237,242,248,0.02) 11px
     );
 }
 
-/* Engraved text effect (Colossus style) */
+/* Engraved text effect */
 .engraved-text {
   text-shadow:
-    0 1px 0 rgba(255,255,255,0.1),
+    0 1px 0 rgba(237,242,248,0.1),
     0 -1px 0 rgba(0,0,0,0.8);
 }
 
-/* Monochrome border with depth (Colossus style) */
+/* Monochrome border with depth */
 .monochrome-border {
-  border: 2px solid rgba(255,255,255,0.8);
+  border: 2px solid rgba(237,242,248,0.8);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.1),
+    inset 0 1px 0 rgba(237,242,248,0.1),
     0 2px 4px rgba(0,0,0,0.5);
 }
 
@@ -520,12 +390,12 @@ html.light-mode .navbar-toggle {
    ============================================ */
 
 .navbar-logo img {
-  filter: drop-shadow(0 0 0px rgba(0, 255, 0, 0));
+  filter: drop-shadow(0 0 0px rgba(56, 189, 248, 0));
   transition: filter 0.2s ease;
 }
 
 .navbar-logo:hover img {
-  filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.5));
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.5));
 }
 
 /* ============================================
@@ -575,27 +445,27 @@ html.light-mode .navbar-toggle {
 
 .flip-card-front {
   background: var(--bg-primary);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--hairline);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.08);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.08);
 }
 
 .flip-card:hover .flip-card-front {
-  box-shadow: 0 0 40px rgba(0, 255, 0, 0.15);
+  box-shadow: 0 0 40px rgba(56, 189, 248, 0.15);
 }
 
 .flip-card-back {
   background: var(--bg-primary);
-  border: 1px solid var(--accent-green, rgba(0, 255, 0, 0.3));
+  border: 1px solid rgba(56, 189, 248, 0.3);
   padding: 1.5rem;
   transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
   justify-content: center;
   overflow-y: auto;
-  box-shadow: 0 0 40px rgba(0, 255, 0, 0.15);
+  box-shadow: 0 0 40px rgba(56, 189, 248, 0.15);
 }
 
 /* ============================================
@@ -603,7 +473,7 @@ html.light-mode .navbar-toggle {
    ============================================ */
 
 .border-brutal {
-  border: 1px solid #ffffff;
+  border: 1px solid var(--hairline);
 }
 
 .hover-invert {
@@ -611,8 +481,8 @@ html.light-mode .navbar-toggle {
 }
 
 .hover-invert:hover {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
 }
 
 img {

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { EB_Garamond, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { NoiseOverlay } from "@/components/NoiseOverlay";
 import { Navbar } from "@/components/layout/Navbar";
@@ -34,22 +33,10 @@ const PixelatedVideoBackground = dynamic(
   }
 );
 
-const garamond = EB_Garamond({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-garamond",
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-mono",
-});
-
 export const metadata: Metadata = {
-  title: "MantisShield - Defending the Decentralized Fabric",
+  title: "MantisShield — Security Research Firm",
   description:
-    "AI-driven threat intelligence & automated response for DeFi protocols. Security for DeFi and Fintech with optimized AI agents.",
+    "Security research firm specializing in fraud, scam, social engineering and deepfake analysis. Continuous monitoring and AI-assisted investigation tools.",
   metadataBase: new URL("https://mantishield.xyz"),
   icons: {
     icon: [
@@ -62,9 +49,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "MantisShield",
-    title: "MantisShield - DeFi & Fintech Security",
+    title: "MantisShield — Security Research Firm",
     description:
-      "AI-driven threat intelligence & automated response for DeFi protocols",
+      "Fraud, scam, social engineering and deepfake analysis. Continuous monitoring and AI-assisted investigation.",
     images: ["/og-image.png"],
   },
 };
@@ -75,8 +62,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${garamond.variable} ${jetbrains.variable}`}>
-      <body className="bg-black text-white antialiased font-mono">
+    <html lang="en">
+      <body className="bg-black text-white antialiased font-sans">
         <Providers>
           <PixelatedVideoBackground />
           <NoiseOverlay />

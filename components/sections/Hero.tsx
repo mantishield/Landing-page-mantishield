@@ -84,7 +84,7 @@ export function Hero() {
       <section className="relative h-screen w-full overflow-hidden">
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center">
           <div className="w-[1px] h-20 bg-white/50 mb-8" />
-          <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl tracking-[-0.05em] uppercase mb-6">
+          <h1 className="font-sans font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl tracking-tight uppercase mb-6">
             {" ".repeat(35)}
           </h1>
         </div>
@@ -107,7 +107,7 @@ export function Hero() {
             className="object-contain"
             style={{
               mixBlendMode: "screen",
-              filter: "brightness(1.2)",
+              filter: "hue-rotate(140deg) brightness(1.2)",
             }}
             sizes="(max-width: 768px) 300px, (max-width: 1024px) 500px, 600px"
             priority
@@ -132,8 +132,11 @@ export function Hero() {
           transition={{ duration: 0.3, delay: 0.1 }}
           className="flex items-center gap-3 mb-10"
         >
-          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-          <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-green-400/80">
+          <div
+            className="w-2 h-2 bg-accent rounded-full animate-pulse"
+            style={{ boxShadow: "0 0 8px rgba(56,189,248,0.6)" }}
+          />
+          <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-accent/80">
             {t("hero.status")}
           </span>
         </motion.div>
@@ -147,10 +150,7 @@ export function Hero() {
         />
 
         {/* Main Headline with Decoding Effect */}
-        <h1
-          className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase mb-8 leading-[1.05] tracking-[-0.05em]"
-          style={{ textShadow: "0 0 60px rgba(0,0,0,0.9), 0 0 40px rgba(0,255,0,0.3)" }}
-        >
+        <h1 className="text-gradient font-sans font-bold text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase mb-8 leading-[1.05] tracking-tight">
           <DecodingText text={t("hero.line1")} delay={300} speed={25} />
           <br />
           <DecodingText text={t("hero.line2")} delay={600} speed={25} />
@@ -177,9 +177,9 @@ export function Hero() {
           className="flex gap-4 flex-wrap justify-center"
         >
           <Link
-            href="/services"
+            href="/contact"
             className="group relative font-mono text-[10px] md:text-[11px] tracking-[0.3em] uppercase px-8 py-4 border-[0.5px] border-white/60 hover:border-white backdrop-blur-sm overflow-hidden"
-            style={{ backgroundColor: "rgba(0,0,0,0.3)", transition: "none" }}
+            style={{ backgroundColor: "rgba(6,7,15,0.3)", transition: "none" }}
           >
             <span className="relative z-10 group-hover:text-black">
               {t("hero.cta1")}
@@ -190,19 +190,21 @@ export function Hero() {
             />
           </Link>
 
-          <Link
-            href="/contact"
-            className="group relative font-mono text-[10px] md:text-[11px] tracking-[0.3em] uppercase px-8 py-4 border-[0.5px] border-green-400/60 text-green-400 hover:border-green-400 backdrop-blur-sm overflow-hidden"
-            style={{ backgroundColor: "rgba(0,0,0,0.3)", transition: "none" }}
+          <a
+            href="https://verdict.mantishield.xyz/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative font-mono text-[10px] md:text-[11px] tracking-[0.3em] uppercase px-8 py-4 border-[0.5px] border-accent/60 text-accent hover:border-accent backdrop-blur-sm overflow-hidden"
+            style={{ backgroundColor: "rgba(6,7,15,0.3)", transition: "none" }}
           >
             <span className="relative z-10 group-hover:text-black">
               {t("hero.cta2")}
             </span>
             <div
-              className="absolute inset-0 bg-green-400 scale-x-0 group-hover:scale-x-100 origin-left"
+              className="absolute inset-0 bg-accent scale-x-0 group-hover:scale-x-100 origin-left"
               style={{ transition: "none" }}
             />
-          </Link>
+          </a>
         </motion.div>
 
         {/* Scroll Indicator */}
@@ -231,7 +233,7 @@ export function Hero() {
       <div
         className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-10"
         style={{
-          background: "linear-gradient(to top, #000000 0%, transparent 100%)",
+          background: "linear-gradient(to top, #06070f 0%, transparent 100%)",
         }}
       />
     </section>

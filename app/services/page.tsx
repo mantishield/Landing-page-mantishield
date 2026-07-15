@@ -3,13 +3,13 @@ import { Footer } from "@/components/Footer";
 import { ServicesPageContent } from "@/components/sections/ServicesPageContent";
 
 export const metadata: Metadata = {
-  title: "MantisShield - Services",
+  title: "MantisShield — Services",
   description:
-    "Smart Contract Watchdogs, AI Auto-Mitigation, and Tokenization Integrity services. Comprehensive DeFi security solutions powered by AI agents.",
+    "Fraud analysis, scam research, social engineering, deepfake forensics, malicious email analysis with Verdict, and continuous threat monitoring.",
   openGraph: {
-    title: "MantisShield - Security Services",
+    title: "MantisShield — Services",
     description:
-      "Smart Contract Monitoring, AI Response & Tokenization Security",
+      "Fraud, scam, social engineering and deepfake research. Email analysis with Verdict.",
     images: ["/og-image.png"],
   },
 };

@@ -9,13 +9,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        black: "#000000",
-        white: "#FFFFFF",
+        // Verdict palette — "black"/"white" remapped so existing
+        // utilities (bg-black, text-white/60, border-white/10…)
+        // resolve to the blue-dark system automatically.
+        black: "#06070f",
+        white: "#edf2f8",
+        accent: "#38bdf8",
       },
       fontFamily: {
-        serif: ["var(--font-garamond)", "ui-serif", "Georgia", "serif"],
-        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
-        garamond: ["var(--font-garamond)", "ui-serif", "Georgia", "serif"],
+        sans: [
+          "-apple-system",
+          "BlinkMacSystemFont",
+          '"SF Pro Text"',
+          '"SF Pro Display"',
+          '"Inter"',
+          "system-ui",
+          "sans-serif",
+        ],
+        mono: ["ui-monospace", '"SF Mono"', "Menlo", "monospace"],
       },
       animation: {
         blink: "blink 1s step-end infinite",
