@@ -23,7 +23,7 @@ export function Services() {
               {t("services.label")}
             </span>
           </div>
-          <h2 className="font-sans font-bold text-4xl md:text-5xl uppercase mb-4 tracking-tight">
+          <h2 className="font-sans font-bold text-4xl md:text-5xl mb-4 tracking-tight">
             {t("services.heading")}
           </h2>
           <div className="w-24 h-[1px] bg-white/20" />
@@ -41,7 +41,7 @@ export function Services() {
                       ID_{service.id}
                     </span>
                   </div>
-                  <h3 className="font-sans font-bold text-xl md:text-2xl uppercase tracking-tight mt-8">
+                  <h3 className="font-sans font-bold text-xl md:text-2xl tracking-tight mt-8">
                     {t(service.titleKey)}
                   </h3>
                 </div>
@@ -54,7 +54,7 @@ export function Services() {
                       ID_{service.id}
                     </span>
                   </div>
-                  <h4 className="font-sans font-bold text-lg uppercase tracking-tight mb-4 text-accent/90">
+                  <h4 className="font-sans font-bold text-lg tracking-tight mb-4 text-accent/90">
                     {t(service.titleKey)}
                   </h4>
                   <p className="font-mono text-[10px] md:text-xs leading-relaxed text-white/70">

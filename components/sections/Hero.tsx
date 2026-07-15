@@ -84,7 +84,7 @@ export function Hero() {
       <section className="relative h-screen w-full overflow-hidden">
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center">
           <div className="w-[1px] h-20 bg-white/50 mb-8" />
-          <h1 className="font-sans font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl tracking-tight uppercase mb-6">
+          <h1 className="font-sans font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl tracking-tight mb-6">
             {" ".repeat(35)}
           </h1>
         </div>
@@ -150,7 +150,7 @@ export function Hero() {
         />
 
         {/* Main Headline with Decoding Effect */}
-        <h1 className="text-gradient font-sans font-bold text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase mb-8 leading-[1.05] tracking-tight">
+        <h1 className="text-gradient font-sans font-bold text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-8 leading-[1.04] tracking-tight">
           <DecodingText text={t("hero.line1")} delay={300} speed={25} />
           <br />
           <DecodingText text={t("hero.line2")} delay={600} speed={25} />
@@ -163,7 +163,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.5 }}
-          className="font-mono text-[10px] sm:text-xs md:text-sm tracking-[0.15em] uppercase text-white/60 mb-12 max-w-2xl"
+          className="font-sans text-sm sm:text-base md:text-lg text-white/60 leading-relaxed mb-12 max-w-2xl"
           style={{ textShadow: "0 0 20px rgba(0,0,0,0.9)" }}
         >
           {t("hero.subtitle")}
