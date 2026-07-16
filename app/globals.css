@@ -98,6 +98,9 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  /* Room for descenders (g, y, p) clipped by background-clip + tight line-height */
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
 }
 
 /* Verdict-style pill badge with luminous dot */
