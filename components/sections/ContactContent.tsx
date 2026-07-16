@@ -51,7 +51,7 @@ export function ContactContent() {
                 {t("contact.directChannel")}
               </h3>
               <p className="font-mono text-sm text-white/80">
-                contact@mantishield.io
+                info@mantishield.xyz
               </p>
             </div>
             <div className="border border-white/10 p-6">

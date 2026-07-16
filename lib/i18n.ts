@@ -126,7 +126,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "form.submit": "[SEND MESSAGE]",
     "form.sending": "[SENDING...]",
     "form.success": "MESSAGE SENT. WE WILL RESPOND WITHIN 24-48 HOURS.",
-    "form.error": "SENDING FAILED. CONTACT US DIRECTLY AT contact@mantishield.io",
+    "form.error": "SENDING FAILED. CONTACT US DIRECTLY AT info@mantishield.xyz",
   },
 
   es: {
@@ -254,6 +254,6 @@ export const translations: Record<Lang, Record<string, string>> = {
     "form.submit": "[ENVIAR MENSAJE]",
     "form.sending": "[ENVIANDO...]",
     "form.success": "MENSAJE ENVIADO. RESPONDEREMOS EN 24-48 HORAS.",
-    "form.error": "EL ENVÍO FALLÓ. CONTÁCTANOS DIRECTAMENTE EN contact@mantishield.io",
+    "form.error": "EL ENVÍO FALLÓ. CONTÁCTANOS DIRECTAMENTE EN info@mantishield.xyz",
   },
 };

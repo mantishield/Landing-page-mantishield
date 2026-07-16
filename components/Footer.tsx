@@ -34,7 +34,7 @@ export function Footer() {
               {t("footer.subtitle")}
             </p>
             <a
-              href="mailto:contact@mantishield.io"
+              href="mailto:info@mantishield.xyz"
               className="group inline-flex items-center gap-3 font-mono text-[11px] tracking-[0.3em] uppercase px-10 py-5 border-[0.5px] border-white/40 hover:border-white transition-all duration-0"
             >
               <span className="relative z-10 group-hover:text-black transition-colors duration-0">
@@ -113,7 +113,7 @@ export function Footer() {
               {t("footer.contactLabel")}
             </h4>
             <ul className="space-y-3 font-mono text-[11px] tracking-[0.05em] text-white/60">
-              <li>contact@mantishield.io</li>
+              <li>info@mantishield.xyz</li>
               <li className="text-white/40">
                 Bogota, Colombia
               </li>
