@@ -2,17 +2,25 @@
 
 ## Overview
 
-Landing page for **MantisShield** — a cybersecurity company specializing in DeFi/Fintech security with autonomous AI agents. The design follows a **cyberpunk dystopian / brutalist** aesthetic inspired by [colossus.credit](https://colossus.credit).
+Landing page for **MantisShield** — a security research firm specializing in fraud, scam, phishing/spoofing, crypto-scam, malicious-miner and deepfake investigation. The design follows the **Verdict design system** (Apple/Mac dark aesthetic) layered on top of the original cyberpunk visual effects (pixelated video background, noise, custom cursors, glitch, flip cards).
 
-- **Framework**: Next.js 14.2.35 (App Router)
+- **Framework**: Next.js 16.2.x (App Router, Turbopack)
+- **React**: 19
 - **Language**: TypeScript 5
 - **Styling**: Tailwind CSS 3.4 + Custom CSS (globals.css)
-- **Animations**: Framer Motion 12.34
-- **Icons**: Lucide React 0.563
-- **Branch**: `automatization`
+- **Animations**: Framer Motion 12
+- **Icons**: Lucide React
 - **Dev server**: `npm run dev` → `http://localhost:3000`
-- **Build**: `npm run build` (output: `./dist`)
+- **Build**: `npm run build` (default `.next` output)
 - **Analyze bundle**: `npm run analyze`
+- **Dark mode only** — light mode was removed entirely.
+- **i18n**: EN/ES via `lib/i18n.ts` + `useLang()`
+
+## Hosting / Deployment
+
+- **mantishield.xyz** (this landing) → **Vercel**, Mantis account, project connected to GitHub repo `mantishield/Landing-page-mantishield` (public), branch `main`. Every push to `main` auto-deploys.
+- **verdict.mantishield.xyz** (Verdict product) → **AWS EC2** behind Caddy (separate repo/infra, do not touch from here).
+- DNS: Namecheap (`registrar-servers.com` nameservers). Apex A record → Vercel; `_vercel` TXT used for domain verification.
 
 ---
 
@@ -20,410 +28,165 @@ Landing page for **MantisShield** — a cybersecurity company specializing in De
 
 ```
 landing-mantis/
-├── app/                          # Next.js App Router (pages)
-│   ├── layout.tsx                # Root layout (fonts, Providers, Navbar, video bg)
-│   ├── page.tsx                  # Homepage (server component)
+├── app/
+│   ├── layout.tsx                # Root layout (metadata, Providers, Navbar, video bg)
+│   ├── page.tsx                  # Homepage (Hero, Stats, Services, Why, Verdict, CTA, Footer)
 │   ├── globals.css               # Global styles + CSS variables + animations
-│   ├── icon.png                  # Favicon (32x32, generated from favicon.jpeg)
-│   ├── apple-icon.png            # Apple touch icon (180x180)
-│   ├── contact/
-│   │   └── page.tsx              # Contact page (server component)
-│   ├── protocol/
-│   │   └── page.tsx              # Protocol page (terminal demo)
-│   ├── services/
-│   │   └── page.tsx              # Services page (all capabilities)
-│   └── api/
-│       └── contact/
-│           └── route.ts          # POST /api/contact — contact form endpoint
+│   ├── icon.png / apple-icon.png # Favicons
+│   ├── contact/page.tsx          # Contact page
+│   ├── services/page.tsx         # Services page (6 capabilities)
+│   └── api/contact/route.ts      # POST /api/contact
 │
 ├── components/
-│   ├── layout/
-│   │   └── Navbar.tsx            # Main navbar (logo, links, theme toggle, lang toggle)
+│   ├── layout/Navbar.tsx         # Logo, SERVICES / VERDICT↗ / CONTACT, lang toggle
 │   ├── sections/
-│   │   ├── Hero.tsx              # Hero section (DecodingText effect, Hero.jpeg bg)
-│   │   ├── Services.tsx          # Homepage "Core Protocols" flip cards (3 cards)
-│   │   ├── WhySection.tsx        # "Why MantisShield" flip cards (3 cards)
-│   │   ├── StatsBar.tsx          # Stats row (100ms, 24/7, $2.4B, 847+)
-│   │   ├── CTASection.tsx        # "Initiate Protocol" CTA with buttons
-│   │   ├── ContactContent.tsx    # Contact page client content wrapper
-│   │   └── ServicesPageContent.tsx # Services page client content wrapper
-│   ├── ui/
-│   │   ├── Card.tsx              # Basic brutalist card (hover invert)
-│   │   ├── FlipCard.tsx          # 3D flip card (CSS perspective + rotateY)
-│   │   └── TypewriterText.tsx    # Character-by-character typing animation
+│   │   ├── Hero.tsx              # DecodingText effect, Hero.jpeg (hue-rotated blue)
+│   │   ├── Services.tsx          # 3 flip cards (fraud/crypto scams, phishing, deepfakes)
+│   │   ├── WhySection.tsx        # 3 flip cards
+│   │   ├── StatsBar.tsx          # 24/7, <60s, EN/ES, AI+Human (values via i18n)
+│   │   ├── VerdictSection.tsx    # Verdict product panel (glass, badge-pill, external CTA)
+│   │   ├── CTASection.tsx        # CTA → /contact + Verdict external
+│   │   ├── ContactContent.tsx    # Contact page client content
+│   │   └── ServicesPageContent.tsx
+│   ├── ui/                       # Card, FlipCard (3D), TypewriterText
 │   ├── visuals/
-│   │   └── PixelatedVideoBackground.tsx  # Canvas video processor (Bayer dithering)
-│   ├── ContactForm.tsx           # Form with honeypot, validation, status states
-│   ├── Footer.tsx                # Footer (CTA, links, brand, copyright)
+│   │   ├── PixelatedVideoBackground.tsx  # Canvas Bayer dithering, blue tint
+│   │   └── VideoBackgroundClient.tsx     # Client wrapper: dynamic(ssr:false) — required by Next 15+
+│   ├── ContactForm.tsx           # Honeypot, validation, status states
+│   ├── Footer.tsx                # CTA, Product column (Verdict), links, info@mantishield.xyz
 │   ├── NoiseOverlay.tsx          # Canvas noise grain (1/4 res, 12fps)
-│   ├── Providers.tsx             # Client wrapper: ThemeProvider + LanguageProvider
-│   └── Terminal.tsx              # Live audit terminal simulation (protocol page)
+│   └── Providers.tsx             # <LanguageProvider> only
 │
 ├── lib/
-│   ├── i18n.ts                   # Translation strings (EN/ES, ~90 keys each)
-│   ├── LanguageContext.tsx        # Language context (useLang hook, localStorage)
-│   ├── ThemeContext.tsx           # Theme context (useTheme hook, dark/light)
-│   └── utils.ts                  # cn() utility (clsx + tailwind-merge)
+│   ├── i18n.ts                   # EN/ES translations
+│   ├── LanguageContext.tsx       # useLang() hook, localStorage "mantis-lang"
+│   └── utils.ts                  # cn()
 │
-├── public/
-│   ├── assets/
-│   │   ├── city_noise_web.mp4    # Background video (960x540, 2MB, compressed)
-│   │   ├── city_noise.mp4        # Original 4K video (4096x2160, 117MB — NOT USED)
-│   │   ├── Navar.jpeg            # Navbar logo (white mantis head + "MANTIS" text)
-│   │   ├── Hero.jpeg             # Hero mantis (green cyberpunk, mix-blend-mode: screen)
-│   │   ├── favicon.jpeg          # Source for generated favicons (pixel art mantis)
-│   │   ├── MantisLogo.png        # Old logo (11MB — NOT USED, legacy)
-│   │   ├── horizontal-logo-*.jpeg   # Alternative logo (unused)
-│   │   └── minimalist-geometric-*.jpeg # Alternative logo (unused)
-│   ├── apple-touch-icon.png      # Apple touch icon copy
-│   ├── favicon-16x16.png         # 16x16 favicon
-│   ├── favicon-32x32.png         # 32x32 favicon
-│   └── _headers                  # Static asset cache headers (1yr immutable)
-│
-├── next.config.mjs               # Next.js config (no export, SWC minify, cache headers)
-├── tailwind.config.ts            # Tailwind config (custom fonts, animations, keyframes)
-├── tsconfig.json                 # TypeScript (strict, bundler resolution, @/* alias)
-├── postcss.config.mjs            # PostCSS (tailwindcss plugin)
-├── .eslintrc.json                # ESLint (next/core-web-vitals + next/typescript)
-├── .gitignore                    # Standard Next.js gitignore
-├── package.json                  # Dependencies and scripts
-└── PERFORMANCE.md                # Performance optimization notes
+├── public/assets/                # Hero.jpeg, Navar.jpeg, city_noise_web.mp4, favicon.jpeg
+├── next.config.mjs               # No distDir (Vercel), no swcMinify (removed in Next 15+)
+├── tailwind.config.ts            # Remapped black/white, accent, system fonts
+└── tsconfig.json                 # strict, @/* alias
 ```
 
----
-
-## Dependencies
-
-### Production
-| Package | Version | Purpose |
-|---------|---------|---------|
-| `next` | 14.2.35 | React framework (App Router) |
-| `react` | ^18 | UI library |
-| `react-dom` | ^18 | React DOM renderer |
-| `framer-motion` | ^12.34.0 | Animations (hero entrance, terminal logs, navbar, mobile menu) |
-| `lucide-react` | ^0.563.0 | Icons (ArrowUpRight, Menu, X) |
-| `clsx` | ^2.1.1 | Conditional classname utility |
-| `tailwind-merge` | ^3.4.0 | Merge Tailwind classes without conflicts |
-
-### Development
-| Package | Version | Purpose |
-|---------|---------|---------|
-| `typescript` | ^5 | Type safety |
-| `tailwindcss` | ^3.4.1 | Utility-first CSS |
-| `postcss` | ^8 | CSS processing |
-| `eslint` | ^8 | Linting |
-| `eslint-config-next` | 14.2.35 | Next.js ESLint rules |
-| `@next/bundle-analyzer` | ^16.1.6 | Bundle size analysis |
-| `@types/node` | ^20 | Node.js types |
-| `@types/react` | ^18 | React types |
-| `@types/react-dom` | ^18 | React DOM types |
+**Deleted (do not re-add)**: `lib/ThemeContext.tsx`, `app/protocol/`, `components/Terminal.tsx` — light mode and the /protocol terminal page were removed in the redesign.
 
 ---
 
-## Fonts
+## Design System (Verdict-derived)
 
-Loaded via `next/font/google` in `app/layout.tsx`:
+### Colors (CSS vars in globals.css + Tailwind remap)
+| Token | Value | Notes |
+|---|---|---|
+| `--bg-primary` / Tailwind `black` | `#06070f` | Blue-black; all `bg-black` utilities resolve to this |
+| `--text-primary` / Tailwind `white` | `#edf2f8` | All `text-white/XX` utilities resolve to this |
+| `--accent` / Tailwind `accent` | `#38bdf8` | Sky blue; glows use `rgba(56,189,248,…)` |
+| `--panel` | `rgba(226,236,245,.045)` | Glass panels |
+| `--hairline` | `rgba(226,236,245,.14)` | Hairline borders |
 
-| Font | CSS Variable | Usage |
-|------|-------------|-------|
-| **EB Garamond** | `--font-garamond` | Headings (h1, h2, h3), serif text |
-| **JetBrains Mono** | `--font-mono` | Body text, labels, UI, code-style elements |
+Body background: `#06070f` + radial gradient `circle at 50% 42%, rgba(8,12,20,.92) → rgba(4,6,12,.96)`.
 
----
+### Typography (system fonts — no Google Fonts)
+- **Sans**: `-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", system-ui, sans-serif`
+- **Mono**: `ui-monospace, "SF Mono", Menlo, monospace`
+- h1: weight 700, `letter-spacing: -0.035em`, `line-height: 1.04`; h2/h3: weight 700, `-0.02em`
+- Headlines are **sentence case** (like Verdict's "Analyze your email."), NOT uppercase.
 
-## Images & Assets
+### Key CSS utilities (globals.css)
+- `.text-gradient` — white→`#a9cdf2` via `background-clip: text`. Has `padding-bottom: 0.12em` + negative margin to prevent descender clipping (g, y, p) — do not remove.
+- `.badge-pill` — pill with luminous accent dot (Verdict style).
+- `.glass-panel` — `--panel` bg + `backdrop-filter: blur(8px)` + hairline border.
+- Custom cursors (crosshair/target/text) re-tinted to `#38bdf8`.
+- Kept effects: glitch, blink, flicker, digitalPulse, fadeIn, `.grid-bg`, `.scanlines`, dithered patterns, flip-card 3D (blue glow).
 
-### Active (used in production)
-| File | Location | Size | Usage |
-|------|----------|------|-------|
-| `Navar.jpeg` | `/public/assets/` | 47KB | Navbar logo (mix-blend-mode: lighten) |
-| `Hero.jpeg` | `/public/assets/` | 53KB | Hero background mantis (mix-blend-mode: screen, digitalPulse animation) |
-| `favicon.jpeg` | `/public/assets/` | 72KB | Source for favicon generation |
-| `city_noise_web.mp4` | `/public/assets/` | 2MB | Background video (960x540, compressed from 4K) |
-| `icon.png` | `/app/` | 1.7KB | Favicon 32x32 |
-| `apple-icon.png` | `/app/` | 23KB | Apple touch icon 180x180 |
-| `favicon-32x32.png` | `/public/` | 1.7KB | Fallback favicon |
-| `favicon-16x16.png` | `/public/` | 858B | Small favicon |
-| `apple-touch-icon.png` | `/public/` | 23KB | Fallback apple icon |
-
-### Legacy (not used, can be deleted)
-| File | Size | Reason |
-|------|------|--------|
-| `MantisLogo.png` | 11MB | Replaced by Navar.jpeg |
-| `city_noise.mp4` | 117MB | Replaced by city_noise_web.mp4 (compressed) |
-| `horizontal-logo-*.jpeg` | 40KB | Alternative logo, never used |
-| `minimalist-geometric-*.jpeg` | 102KB | Alternative logo, never used |
+### Green assets → blue
+`Hero.jpeg` and `Navar.jpeg` are green source images; they are turned blue at render time with `filter: hue-rotate(140deg)` (+ brightness/drop-shadow). `PixelatedVideoBackground` tints white pixels to `rgb(120,200,255)`.
 
 ---
 
-## API Endpoints
+## Positioning & Copy (i18n)
 
-### POST `/api/contact`
-Contact form submission handler.
+Honest security-research copy — **no invented metrics, no military jargon** (kill chains, zk-SNARKs, fake $2.4B stats were removed). Topics: phishing, spoofing, crypto scams (rug pulls, wallet drainers, fraudulent exchanges), malicious miners/cryptojacking, BEC, deepfakes.
 
-**Request body:**
-```json
-{
-  "name": "string (required)",
-  "email": "string (required, validated)",
-  "protocol": "string (optional)",
-  "message": "string (required)"
-}
+- Hero: EN "We investigate / digital fraud / & scams." · ES "Investigamos / el fraude / digital."
+- Stats: `24/7` monitoring · `<60s` Verdict email analysis · `EN/ES` coverage · `AI + Human`
+- Contact email everywhere: **info@mantishield.xyz** (never `.io`)
+
+### Translation key groups (`lib/i18n.ts`)
 ```
-
-**Responses:**
-- `200` → `{ "success": true }`
-- `400` → `{ "error": "Missing required fields" }` or `{ "error": "Invalid email address" }`
-- `500` → `{ "error": "Internal server error" }`
-
-**Note:** Currently logs to console. TODO: Integrate with email service (Resend, SendGrid, etc.)
-
----
-
-## Feature: Dark/Light Mode
-
-### Architecture
-- **Context**: `lib/ThemeContext.tsx` → `ThemeProvider` + `useTheme()` hook
-- **Persistence**: `localStorage` key `mantis-theme`
-- **Detection**: Falls back to `prefers-color-scheme` on first visit
-- **Mechanism**: Toggles `light-mode` class on `<html>` element
-
-### CSS Variables (`globals.css`)
-| Variable | Dark (default) | Light |
-|----------|---------------|-------|
-| `--bg-primary` | `#000000` | `#F5F5F0` |
-| `--bg-secondary` | `#0A0A0A` | `#EAEAE5` |
-| `--text-primary` | `#FFFFFF` | `#0A0A0A` |
-| `--text-secondary` | `rgba(255,255,255,0.6)` | `rgba(0,0,0,0.6)` |
-| `--accent-green` | `#00FF00` | `#00CC00` |
-| `--accent-red` | `#FF0000` | `#CC0000` |
-| `--border-color` | `#FFFFFF` | `#0A0A0A` |
-| `--card-bg` | `rgba(255,255,255,0.03)` | `rgba(0,0,0,0.03)` |
-| `--card-border` | `rgba(255,255,255,0.15)` | `rgba(0,0,0,0.15)` |
-
-### Light Mode Overrides
-Comprehensive CSS overrides in `globals.css` targeting Tailwind hardcoded classes:
-- `html.light-mode section`, `footer` → `var(--bg-primary)`
-- `html.light-mode .text-white` → `var(--text-primary)`
-- `html.light-mode .text-white/XX` → inverted opacity equivalents
-- `html.light-mode .border-white/XX` → inverted borders
-- `html.light-mode .bg-black/XX` → light equivalents
-- Video background: dims to 6% opacity + `filter: invert(1)`
-
-### Toggle Button
-- Desktop: `[☀]` / `[☾]` in navbar (right side)
-- Mobile: `[☀ LIGHT]` / `[☾ DARK]` in mobile menu
-
----
-
-## Feature: i18n (EN/ES)
-
-### Architecture
-- **Translations**: `lib/i18n.ts` — ~90 keys per language
-- **Context**: `lib/LanguageContext.tsx` → `LanguageProvider` + `useLang()` hook
-- **Hook returns**: `{ lang, toggleLang, t }` where `t(key)` returns translated string
-- **Persistence**: `localStorage` key `mantis-lang`
-- **HTML**: Updates `document.documentElement.lang` attribute
-
-### Toggle Button
-- Desktop: `[ES]` / `[EN]` in navbar (right side, before theme toggle)
-- Mobile: Same in mobile menu
-
-### Translated Components
-All visible text across the site uses `t("key")`:
-- Navbar links, Hero (headlines, subtitle, CTAs), Stats Bar, Services (Core Protocols cards), WhySection (flip cards), CTA Section, Footer, Contact page, Contact form (labels, placeholders, status messages), Services page (all cards), Terminal (headers, stats)
-
-### Translation Key Pattern
+nav.services, nav.verdict, nav.contact
+hero.status, hero.line1-3, hero.subtitle, hero.cta1, hero.cta2, hero.scroll
+stats.value1-4 + stats.response/monitoring/secured/audited
+services.label/heading/01-03.title/desc/viewAll
+why.01-03.title/desc
+verdict.badge/name/tagline/feature1-3/cta
+cta.heading/subtitle/btn1/btn2
+footer.*, contact.*, form.*
+servicesPage.* (6 capability cards)
 ```
-nav.services, nav.protocol, nav.contact
-hero.status, hero.line1, hero.line2, hero.line3, hero.subtitle
-stats.response, stats.monitoring, stats.secured, stats.audited
-services.01.title, services.01.desc (through 03)
-why.01.title, why.01.desc (through 03)
-cta.heading, cta.subtitle, cta.btn1, cta.btn2
-footer.heading1, footer.heading2, footer.cta, footer.brand.desc
-contact.heading, contact.subtitle, contact.directChannel
-form.name, form.email, form.protocol, form.message, form.submit
-protocol.label, protocol.heading, protocol.contractsAudited
-servicesPage.heading1, servicesPage.mcp.title, servicesPage.mcp.desc
+No `protocol.*` keys exist.
+
+---
+
+## Navbar
+
 ```
-
----
-
-## Feature: Flip Cards (3D)
-
-### Component: `components/ui/FlipCard.tsx`
-- Receives `front` and `back` as `ReactNode` props
-- CSS-only 3D animation (no JS for flip)
-- `perspective: 1000px`, `transform: rotateY(180deg)` on hover
-- `backface-visibility: hidden` on both faces
-- `transition: transform 0.6s ease`
-- Green glow `box-shadow` on hover
-
-### Used in:
-- **Services section** (homepage): 3 cards — Kill Chain Ontology, Autonomous Intervention, Adversarial War-Testing
-- **WhySection** (homepage): 3 cards — Autonomous Detection, Zero-Latency Response, Formal Verification
-
----
-
-## Visual Effects
-
-### PixelatedVideoBackground (`components/visuals/PixelatedVideoBackground.tsx`)
-- Canvas-based video processor with **Bayer 4x4 dithering matrix**
-- Dual rendering: CSS-filtered `<video>` (immediate) + Canvas (progressive)
-- Video source: `/assets/city_noise_web.mp4` (2MB, 960x540)
-- Green/cyan tint on white pixels
-- Throttled to 18fps
-- Includes: scanlines, CRT vignette, sweeping scan line, dithered dot pattern
-- Loaded via `dynamic()` with `ssr: false`
-
-### NoiseOverlay (`components/NoiseOverlay.tsx`)
-- Canvas noise grain at **1/4 resolution**, throttled to **12fps**
-- Low opacity, pointer-events-none
-
-### Custom Cursors (CSS-only, globals.css)
-- Default: Crosshair SVG (circle + lines)
-- Interactive elements: Square targeting cursor
-- Text inputs: Vertical line cursor
-
-### Animations (globals.css + Tailwind config)
-| Animation | Type | Usage |
-|-----------|------|-------|
-| `glitch` | CSS keyframes | Glitch text effect (clip-path + transform) |
-| `blink` | CSS keyframes | Terminal cursor blink (1s step-end) |
-| `flicker` | CSS keyframes | Subtle opacity flicker (4s) |
-| `digitalPulse` | CSS keyframes | Hero mantis bg (opacity 0.12→0.20, 4s) |
-| `fadeIn` | CSS keyframes | Page transition (opacity 0→1, 0.3s) |
-| `scanline` | Tailwind keyframes | Scanning line effect (8s translateY) |
-| `DecodingText` | JS (Hero.tsx) | Character-by-character decode from random chars |
-| `TypewriterText` | JS (TypewriterText.tsx) | Sequential character typing |
-
----
-
-## CSS Architecture (globals.css)
-
-### Sections
-1. **Tailwind directives** — `@tailwind base/components/utilities`
-2. **CSS Variables** — `:root` (dark) and `html.light-mode` (light)
-3. **Base styles** — box-sizing, scroll-behavior, body font
-4. **Custom cursors** — SVG data URIs for crosshair, pointer, text
-5. **Typography hierarchy** — h1-h3 (serif), p/label (mono), responsive clamp sizes
-6. **Selection & Scrollbar** — Green selection, thin custom scrollbar
-7. **Light mode overrides** — Comprehensive overrides for Tailwind hardcoded classes
-8. **Navbar toggles** — `.navbar-toggle` button styles
-9. **Brutalist components** — `.brutal-card`, `.brutal-button`, `.brutal-input`
-10. **Nav link hover** — Underline on hover with `::after` pseudo-element
-11. **Animations** — glitch, blink, flicker, digitalPulse, fadeIn
-12. **Background effects** — `.grid-bg`, `.scanlines`
-13. **Colossus-style patterns** — `.dithered-pattern`, `.currency-lines`, `.engraved-text`, `.monochrome-border`
-14. **Navbar logo glow** — Green drop-shadow on hover
-15. **Hero mantis visual** — digitalPulse animation class
-16. **Flip card 3D** — perspective, transform-style, backface-visibility
-17. **Utilities** — `.border-brutal`, `.hover-invert`
+Desktop: [SERVICES] ——— [🦗 MANTIS] ——— [VERDICT ↗] [CONTACT]  ...  [ES]
+```
+- Verdict is an external link (`https://verdict.mantishield.xyz/`, `target="_blank" rel="noopener noreferrer"`, ArrowUpRight icon).
+- Language toggle only — there is NO theme toggle.
 
 ---
 
 ## Routing
 
-| Route | File | Type | Description |
-|-------|------|------|-------------|
-| `/` | `app/page.tsx` | Static | Homepage (Hero, Stats, Services, Why, CTA, Footer) |
-| `/services` | `app/services/page.tsx` | Static | All 6 service capabilities |
-| `/protocol` | `app/protocol/page.tsx` | Static | Terminal audit demo |
-| `/contact` | `app/contact/page.tsx` | Static | Contact form + info cards |
-| `/api/contact` | `app/api/contact/route.ts` | Dynamic | POST endpoint for form |
+| Route | Type | Description |
+|---|---|---|
+| `/` | Static | Hero, Stats, Services, Why, VerdictSection, CTA, Footer |
+| `/services` | Static | 6 capabilities |
+| `/contact` | Static | Form + direct channel (info@mantishield.xyz) |
+| `/api/contact` | Dynamic | POST endpoint (currently logs to console; TODO email service) |
+
+`/protocol` no longer exists (404).
 
 ---
 
-## Navbar Layout
+## Next.js 16 Gotchas
 
-```
-Desktop:
-[SERVICES] ——— [🦗 MANTIS] ——— [PROTOCOL] [CONTACT]  ...  [ES] [☀]
+- `dynamic(..., { ssr: false })` is **forbidden in Server Components**. The video background is wrapped in `components/visuals/VideoBackgroundClient.tsx` (`"use client"`); import that from `layout.tsx`.
+- `swcMinify` config option was removed — do not re-add to next.config.mjs.
+- Build uses Turbopack by default.
+- eslint 9 + eslint-config-next 16.
 
-Mobile (hamburger menu):
-        [🦗 MANTIS]
-        SERVICES
-        PROTOCOL
-        CONTACT
-        [ES]  [☀ LIGHT]
-```
+## Security Notes
+
+- Repo is **public** — never commit secrets; env vars go in Vercel project settings only. `.env*` is gitignored.
+- `npm audit`: one known residual moderate (postcss vendored inside Next itself, no upstream fix, no practical risk for static output).
 
 ---
 
-## Build Configuration
+## API: POST `/api/contact`
 
-### next.config.mjs
-- `distDir: "dist"` — Custom build output directory
-- `images.unoptimized: true` — No image optimization (static deploy)
-- `swcMinify: true` — SWC-based minification
-- `compress: true` — Gzip compression
-- `poweredByHeader: false` — Remove X-Powered-By header
-- `experimental.optimizePackageImports` — Tree-shake framer-motion and lucide-react
-- **Cache headers**: 1-year immutable for static assets (svg, jpg, png, webp, mp4)
-
-### Performance Optimizations
-- Video compressed from 4K/117MB → 540p/2MB via ffmpeg
-- NoiseOverlay renders at 1/4 resolution, 12fps
-- PixelatedVideoBackground throttled to 18fps
-- `dynamic()` imports with `ssr: false` for heavy client components (PixelatedVideoBackground, Terminal, ContactForm)
-- Package imports optimized for tree-shaking
+Body: `{ name, email, protocol?, message }` → 200 `{ success: true }` | 400 validation | 500.
+Currently logs to console. TODO: integrate email service (Resend/SendGrid) via Vercel env vars.
 
 ---
 
 ## Provider Architecture
 
 ```
-<html>
-  <body>
-    <Providers>                    ← components/Providers.tsx (client)
-      <ThemeProvider>              ← lib/ThemeContext.tsx
-        <LanguageProvider>         ← lib/LanguageContext.tsx
-          <PixelatedVideoBackground />  ← dynamic, ssr: false
-          <NoiseOverlay />
-          <Navbar />               ← uses useTheme + useLang
-          <main>{children}</main>  ← pages
-        </LanguageProvider>
-      </ThemeProvider>
-    </Providers>
-  </body>
-</html>
+<html><body>
+  <Providers>                    ← LanguageProvider only
+    <VideoBackgroundClient />    ← dynamic(ssr:false) inside client wrapper
+    <NoiseOverlay />
+    <Navbar />
+    <main>{children}</main>
+  </Providers>
+</body></html>
 ```
 
----
+## Performance
 
-## Server vs Client Components
-
-### Server Components (export metadata)
-- `app/layout.tsx`
-- `app/page.tsx`
-- `app/services/page.tsx`
-- `app/contact/page.tsx`
-- `app/protocol/page.tsx`
-
-### Client Components ("use client")
-- All components in `components/` (Navbar, Hero, Services, WhySection, Footer, etc.)
-- All contexts in `lib/` (ThemeContext, LanguageContext)
-- `components/Providers.tsx` — bridges server layout to client contexts
-
----
-
-## Design Tokens
-
-### Colors
-- **Primary**: Black `#000000` / White `#FFFFFF`
-- **Accent Green**: `#00FF00` (dark) / `#00CC00` (light) / `#4ade80` (Tailwind green-400)
-- **Accent Red**: `#FF0000` (dark) / `#CC0000` (light)
-- **Text muted**: `rgba(255,255,255,0.4-0.7)` (dark) / `rgba(0,0,0,0.3-0.6)` (light)
-
-### Typography Scale
-- h1: `clamp(2.5rem, 8vw, 6rem)` — serif
-- h2: `clamp(2rem, 5vw, 3.5rem)` — serif
-- h3: `clamp(1.5rem, 3vw, 2rem)` — serif
-- Body: `0.875rem` — mono
-- Labels/UI: `10-11px` — mono, uppercase, tracking `0.2-0.3em`
-
-### Spacing
-- Max content width: `1400px` (homepage), `1600px` (services), `1200px` (terminal, contact)
-- Section padding: `py-32 px-6 md:px-12`
-- Navbar height: `h-20 md:h-24`
+- Video: `city_noise_web.mp4` (960x540, 2MB). `city_noise.mp4` (117MB 4K) and `MantisLogo.png` (11MB) are legacy, unused.
+- NoiseOverlay: 1/4 res, 12fps. PixelatedVideoBackground: 18fps.
+- `experimental.optimizePackageImports`: framer-motion, lucide-react.
+- Static asset cache headers: 1yr immutable (next.config.mjs `headers()`).
