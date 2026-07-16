@@ -4,6 +4,7 @@ import { NoiseOverlay } from "@/components/NoiseOverlay";
 import { Navbar } from "@/components/layout/Navbar";
 import { Providers } from "@/components/Providers";
 import { VideoBackgroundClient } from "@/components/visuals/VideoBackgroundClient";
+import { BlackHoleCursor } from "@/components/visuals/BlackHoleCursor";
 
 export const metadata: Metadata = {
   title: "MantisShield — Security Research Firm",
@@ -39,6 +40,7 @@ export default function RootLayout({
         <Providers>
           <VideoBackgroundClient />
           <NoiseOverlay />
+          <BlackHoleCursor />
           <Navbar />
           <main className="page-transition">{children}</main>
         </Providers>
