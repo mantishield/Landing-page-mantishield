@@ -383,38 +383,6 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
     saturate(1.25);
 }
 
-/* Photon ring / accretion disk */
-.bh-disk {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0%,
-    rgba(56, 189, 248, 0) 12%,
-    rgba(56, 189, 248, 0.55) 34%,
-    rgba(169, 205, 242, 0.95) 50%,
-    rgba(56, 189, 248, 0.55) 66%,
-    transparent 88%
-  );
-  -webkit-mask: radial-gradient(
-    circle,
-    transparent 27%,
-    #000 32%,
-    #000 38%,
-    transparent 45%
-  );
-  mask: radial-gradient(
-    circle,
-    transparent 27%,
-    #000 32%,
-    #000 38%,
-    transparent 45%
-  );
-  filter: blur(0.8px) drop-shadow(0 0 8px rgba(56, 189, 248, 0.5));
-  animation: bhSpin 3.5s linear infinite;
-}
-
 /* Event horizon: light cannot escape */
 .bh-core {
   position: absolute;
@@ -427,12 +395,6 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
     rgba(2, 3, 8, 0.45) 26%,
     transparent 40%
   );
-}
-
-@keyframes bhSpin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 @media (pointer: coarse) {

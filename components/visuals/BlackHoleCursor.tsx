@@ -58,7 +58,6 @@ export function BlackHoleCursor() {
   return (
     <div ref={ref} className="bh-cursor" aria-hidden="true">
       <div className="bh-lens" />
-      <div className="bh-disk" />
       <div className="bh-core" />
     </div>
   );
