@@ -376,11 +376,11 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 /* Spacetime curvature: distorts the real content underneath */
 .bh-lens {
   position: absolute;
-  inset: 10px;
+  inset: 4px;
   border-radius: 50%;
-  backdrop-filter: blur(2.5px) brightness(1.18) contrast(1.12) saturate(1.25);
-  -webkit-backdrop-filter: blur(2.5px) brightness(1.18) contrast(1.12)
-    saturate(1.25);
+  backdrop-filter: blur(4.5px) brightness(1.28) contrast(1.22) saturate(1.4);
+  -webkit-backdrop-filter: blur(4.5px) brightness(1.28) contrast(1.22)
+    saturate(1.4);
 }
 
 /* Event horizon: light cannot escape */
