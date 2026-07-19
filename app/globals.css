@@ -468,18 +468,6 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
   filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.5));
 }
 
-/* ============================================
-   HERO MANTIS VISUAL
-   ============================================ */
-
-@keyframes digitalPulse {
-  0%, 100% { opacity: 0.25; }
-  50% { opacity: 0.35; }
-}
-
-.hero-mantis-bg {
-  animation: digitalPulse 4s ease-in-out infinite;
-}
 
 /* ============================================
    FLIP CARD 3D

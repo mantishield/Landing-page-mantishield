@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { useLang } from "@/lib/LanguageContext";
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*<>{}[]";
@@ -96,24 +95,6 @@ export function Hero() {
     <section className="relative h-screen w-full overflow-hidden">
       {/* Grid background for depth */}
       <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none z-[1]" />
-
-      {/* Hero Mantis Background Visual */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[2]">
-        <div className="hero-mantis-bg relative w-[300px] h-[300px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] hidden sm:block">
-          <Image
-            src="/assets/Hero.jpeg"
-            alt=""
-            fill
-            className="object-contain"
-            style={{
-              mixBlendMode: "screen",
-              filter: "hue-rotate(140deg) brightness(1.2)",
-            }}
-            sizes="(max-width: 768px) 300px, (max-width: 1024px) 500px, 600px"
-            priority
-          />
-        </div>
-      </div>
 
       {/* Dark radial overlay behind text for legibility */}
       <div
