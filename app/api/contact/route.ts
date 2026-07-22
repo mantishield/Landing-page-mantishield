@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 const CONTACT_TO = "info@mantishield.xyz";
 // Before verifying the domain in Resend, only "onboarding@resend.dev" is
 // allowed as sender. After DNS verification, set RESEND_FROM in Vercel to
-// e.g. "MantisShield <noreply@mantishield.xyz>".
-const FROM = process.env.RESEND_FROM || "MantisShield <onboarding@resend.dev>";
+// e.g. "Mantishield <noreply@mantishield.xyz>".
+const FROM = process.env.RESEND_FROM || "Mantishield <onboarding@resend.dev>";
 
 export async function POST(request: Request) {
   try {

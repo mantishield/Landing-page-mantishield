@@ -39,7 +39,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "services.03.desc": "Forensic analysis of synthetic media: cloned voices, manipulated images, and fabricated video used in extortion, impersonation, and disinformation. We assess whether content is genuine, document the evidence, and explain our findings in plain language for legal, HR, or communications teams.",
 
     // Why section
-    "why.label": "[Why MantisShield]",
+    "why.label": "[Why Mantishield]",
     "why.heading1": "Research,",
     "why.heading2": "not marketing",
     "why.subtitle": "We are a small security research team. We work on real cases — fraud schemes, phishing campaigns, crypto scams, synthetic media — and we build our own tooling to do it. No inflated numbers, no buzzwords: analysis you can verify.",
@@ -167,7 +167,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "services.03.desc": "Análisis forense de medios sintéticos: voces clonadas, imágenes manipuladas y video fabricado usados en extorsión, suplantación y desinformación. Evaluamos si un contenido es genuino, documentamos la evidencia y explicamos los hallazgos en lenguaje claro para equipos legales, de RRHH o de comunicaciones.",
 
     // Why section
-    "why.label": "[Por qué MantisShield]",
+    "why.label": "[Por qué Mantishield]",
     "why.heading1": "Investigación,",
     "why.heading2": "no marketing",
     "why.subtitle": "Somos un equipo pequeño de investigación de seguridad. Trabajamos sobre casos reales — esquemas de fraude, campañas de phishing, cripto-estafas, medios sintéticos — y construimos nuestras propias herramientas para hacerlo. Sin cifras infladas ni palabras de moda: análisis que puedes verificar.",

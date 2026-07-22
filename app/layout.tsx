@@ -7,7 +7,7 @@ import { VideoBackgroundClient } from "@/components/visuals/VideoBackgroundClien
 import { BlackHoleCursor } from "@/components/visuals/BlackHoleCursor";
 
 export const metadata: Metadata = {
-  title: "MantisShield — Security Research Firm",
+  title: "Mantishield — Security Research Firm",
   description:
     "Security research firm specializing in fraud, scam, social engineering and deepfake analysis. Continuous monitoring and AI-assisted investigation tools.",
   metadataBase: new URL("https://mantishield.xyz"),
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "MantisShield",
-    title: "MantisShield — Security Research Firm",
+    siteName: "Mantishield",
+    title: "Mantishield — Security Research Firm",
     description:
       "Fraud, scam, social engineering and deepfake analysis. Continuous monitoring and AI-assisted investigation.",
     images: ["/og-image.png"],

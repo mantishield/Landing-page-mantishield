@@ -8,11 +8,11 @@ import { CTASection } from "@/components/sections/CTASection";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "MantisShield — Security Research Firm",
+  title: "Mantishield — Security Research Firm",
   description:
     "We research digital fraud. Analysis of scams, social engineering and deepfakes with in-house, AI-assisted tools and continuous monitoring.",
   openGraph: {
-    title: "MantisShield — Security Research Firm",
+    title: "Mantishield — Security Research Firm",
     description:
       "Fraud, scam, social engineering and deepfake analysis with AI-assisted tools.",
     images: ["/og-image.png"],
@@ -31,7 +31,7 @@ export default function HomePage() {
       {/* Services Grid */}
       <Services />
 
-      {/* Why MantisShield — with flip cards */}
+      {/* Why Mantishield — with flip cards */}
       <WhySection />
 
       {/* Verdict product */}

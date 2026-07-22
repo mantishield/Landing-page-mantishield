@@ -111,7 +111,7 @@ export function Navbar() {
               <div className="relative h-10 w-10 md:h-11 md:w-11 overflow-hidden flex-shrink-0">
                 <Image
                   src="/assets/Navar.jpeg"
-                  alt="MantisShield Logo"
+                  alt="Mantishield Logo"
                   fill
                   className="object-cover object-left"
                   style={{
@@ -180,7 +180,7 @@ export function Navbar() {
                 <div className="relative w-20 h-20 mx-auto mb-4">
                   <Image
                     src="/assets/Navar.jpeg"
-                    alt="MantisShield"
+                    alt="Mantishield"
                     fill
                     className="object-cover object-left"
                     style={{
